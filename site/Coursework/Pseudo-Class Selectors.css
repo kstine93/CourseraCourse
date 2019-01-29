@@ -1,0 +1,96 @@
+/*Pseudo-Class Selectors
+These are selectors for either (1) selecting elements which aren't accessible
+using typical selector combinations or (2) changing formatting based on user
+interactions with the page (e.g., hovering with the mouse).
+*/
+
+/*Specification:
+Let's first make a new class, then we'll apply Let's do the example of when
+we want to take a list and make it into a menu!
+Here is my list:
+*/
+
+<ul>
+	<li><a href="/">Home</a></li>
+	<li><a href="http://www.google.com">Google</a></li>
+	<li><a href="http://www.Coursera.org">Coursera</a></li>
+</ul>
+
+
+/*Now, I'm going to turn off the bullet points which normally come
+with an unordered list:
+NOTE: Since our menu is in the header, we can use specify 'header li:' so
+that this formatting will only affect that menu and not other lists.
+*/
+header > li{
+	list-style: none;
+}
+
+/*Next, hyperlinks are a bit different than regular elements in that they
+can have different 'states', which can be expressed using our pseudo-classes.
+The first state is 'link'- which gives the formatting of an unclicked link.
+The second state is 'visited'- which allows for clicked links to be formatted
+differently from unclicked links (which is why clicked links are sometimes
+purple).
+For our menu, however, we don't want to visually differentiate clicked &
+unclicked links, so we're going to set the same style for both:
+*/
+
+a:link, a:visited {
+	text-decoration: none; /*this gets rid of the default underlining*/
+	background-color: green;
+	border: 1px solid blue;
+	color: black;
+	display: block; /*this changes 'a' to display its elements as block rather than in-line.*/
+	width: 200px;
+	text-align: center;
+	margin-bottom: 1px; /*to separate our buttons...*/
+}
+
+/*So now our buttons are blocks, with different colors from the rest of my
+HTML, and are separated from one another by a margin.
+Now, however, I want my buttons to be reactive- so that when users hover
+or click on them, they look like they're being activated!*/
+
+/*a:hover dictates the formatting for hovering over elements; a:active
+dictates formatting for when a user has clicked on an element, but hasn't
+yet released the mouse button. Since we don't want to differentiate these,
+we'll format them both the same way.
+*/
+
+a:hover, a:active{
+	background-color: red;
+	color: white;
+}
+/*Now, when my user hovers over my buttons, and clicks them, they'll turn
+red with white text! */
+
+
+/*One extra pseudo-class that we can fiddle with is the 'nth-case selecctor'.
+This allows us to select the nth-element from a list and apply formatting selectively
+to it. One example is our current list of links. Let's say we always want the
+2nd button down to be a bit bigger (maybe we like the look of buttons staggered
+in size). To change that, we'll need to do this:
+*/
+
+/*Now I could do it this way, and just say that the 2nd element should be
+a bit wider. But what if I add more buttons later?
+*/
+header > li:nth-child(2){
+		width = 250px;
+}
+
+/*A better way to do this might be to specify this, which affects every odd
+element!:
+*/
+body > div:nth-child(odd){
+	width = 250px;
+}
+
+/*BONUS: What if we wanted the odd elements in our list to have different
+hover behavior? Well, we can specify our pseudo-classes together!:
+*/
+body > div:nth-child(odd):hover{
+	color = blue;
+	cursor = pointer;
+}
